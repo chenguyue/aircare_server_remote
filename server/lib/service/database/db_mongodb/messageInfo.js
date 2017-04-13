@@ -23,7 +23,7 @@ var messageInfoInstance = null;
 
 // read all data from mongodb
 MessageInfo.prototype.readAll = function(callback){
-	messageInfoModel.findOne({}, callback);
+	messageInfoModel.find({}, callback);
 };
 
 exports = module.exports = new MessageInfo();

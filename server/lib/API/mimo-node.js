@@ -26,7 +26,6 @@ function connect(callback){
 	});
 	socket.connect();
 }
-
 function readAll(callback){
 	connect(callback);
 	

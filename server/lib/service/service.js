@@ -4,18 +4,35 @@
 * Date: 2017.4.11
 */
 
-var messageInfo = require("./database/db_mongodb/messageInfo");
+var acData = require("./database/db_mysql/ac_data");
 
 var Service = function(){};
 
-Service.prototype.readAll = function(callback){
-	messageInfo.readAll(function(err, res){
+Service.prototype.readByUserName = function(userName, callback){
+	acData.readData(userName, function(err, res){
 		if(err){
-			callback(err, res);
+			callback(err);
 		}else{
 			callback(err, res);			
 		}
 	});
 }
-
+Service.prototype.readBySensor = function(sensor, callback){
+	acData.readSensor(sensor, function(err, res){
+		if(err){
+			callback(err);
+		}else{
+			callback(err, res);			
+		}
+	});
+}
+Service.prototype.readAll = function(callback){
+	acData.readAll(function(err, res){
+		if(err){
+			callback(err);
+		}else{
+			callback(err, res);			
+		}
+	});
+}
 module.exports = new Service();
