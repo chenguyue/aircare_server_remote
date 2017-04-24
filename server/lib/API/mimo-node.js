@@ -16,7 +16,7 @@ MimoNode['readSevenDayAvg'] = readSevenDayAvg;
 // connect function
 function connect(callback){ 
 
-	socket = io.connect("http://10.107.31.156:8886/access"); //http://118.89.236.53:8886/access
+	socket = io.connect("http://118.89.236.53:8886/access"); //http://118.89.236.53:8886/access
 	socket.on('connection',function(){
 		callback.connectCallback();
 	});
