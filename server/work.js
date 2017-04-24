@@ -24,7 +24,46 @@ function work(io){
 						socketConnect && socketConnect.emit('readAllFailed', res);
 						cSocket.disconnect();
 					}else{
+						console.log(res)
 						socketConnect && socketConnect.emit('readAllSucceed', res);						
+					}
+				});
+			});	
+			cSocket.on('readHourAvg', function(day) {
+				clearTimeout(authTimer);
+				service.readHourAvg(day, function(err, res) {					
+					var socketConnect = sSocket.of('/access').connected[cSocket.id];
+					if(err){
+						socketConnect && socketConnect.emit('readHourAvgFailed', res);
+						cSocket.disconnect();
+					}else{
+						console.log(res)
+						socketConnect && socketConnect.emit('readHourAvgSucceed', res);						
+					}
+				});
+			});	
+			cSocket.on('readDayAvg', function(day) {
+				clearTimeout(authTimer);
+				service.readDayAvg(day, function(err, res) {					
+					var socketConnect = sSocket.of('/access').connected[cSocket.id];
+					if(err){
+						socketConnect && socketConnect.emit('readDayAvgFailed', res);
+						cSocket.disconnect();
+					}else{
+						console.log(res)
+						socketConnect && socketConnect.emit('readDayAvgSucceed', res);						
+					}
+				});
+			});	
+			cSocket.on('readSevenDayAvg', function(data) {
+				clearTimeout(authTimer);
+				service.readSevenDayAvg(function(err, res) {					
+					var socketConnect = sSocket.of('/access').connected[cSocket.id];
+					if(err){
+						socketConnect && socketConnect.emit('readSevenDaysAvgFailed', res);
+						cSocket.disconnect();
+					}else{
+						socketConnect && socketConnect.emit('readSevenDaysAvgSucceed', res);						
 					}
 				});
 			});			

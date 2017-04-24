@@ -10,11 +10,13 @@ var socket = null;
 var MimoNode = {};
 
 MimoNode['readAll'] = readAll;
-
+MimoNode['readHourAvg'] = readHourAvg;
+MimoNode['readDayAvg'] = readDayAvg;
+MimoNode['readSevenDayAvg'] = readSevenDayAvg;
 // connect function
 function connect(callback){ 
 
-	socket = io.connect("http://10.107.31.156:8886/access"); 
+	socket = io.connect("http://10.107.31.156:8886/access"); //http://118.89.236.53:8886/access
 	socket.on('connection',function(){
 		callback.connectCallback();
 	});
@@ -36,6 +38,41 @@ function readAll(callback){
 		callback.successCallback(object);
 	});
 	socket.on("readAllFailed", function(object){
+		callback.errorCallback(object);
+	});
+};
+// zgwang
+function readHourAvg(day, callback){
+	connect(callback);
+	socket.emit("readHourAvg", day);
+	socket.on("readHourAvgSucceed", function(object){
+		callback.successCallback(object);
+	});
+	socket.on("readHourAvgFailed", function(object){
+		callback.errorCallback(object);
+	})
+}
+// zgwang
+function readDayAvg(day, callback){
+	connect(callback);
+	socket.emit("readDayAvg", day);
+	socket.on("readDayAvgSucceed", function(object){
+		callback.successCallback(object);
+	});
+	socket.on("readDayAvgFailed", function(object){
+		callback.errorCallback(object);
+	})
+}
+function readSevenDayAvg(callback){
+	connect(callback);
+	
+	var data = "readSevenDaysAvgSucceed";
+
+	socket.emit("readSevenDayAvg", data);
+	socket.on("readAllSucceed", function(object){
+		callback.successCallback(object);
+	});
+	socket.on("readSevenDayAvgsFailed", function(object){
 		callback.errorCallback(object);
 	});
 };
