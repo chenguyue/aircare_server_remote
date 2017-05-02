@@ -1,7 +1,7 @@
 /**
-* 登录、注册、订阅、发布等功能的对外API	
-* @Auther: xufei,zgwang
-* @Date: 2016.5.16
+* work
+* @Auther: zgwang
+* @Date: 2017.05.02
 */
 
 var service = require("./lib/service/service");
@@ -54,19 +54,7 @@ function work(io){
 						socketConnect && socketConnect.emit('readDayAvgSucceed', res);						
 					}
 				});
-			});	
-			cSocket.on('readSevenDayAvg', function(data) {
-				clearTimeout(authTimer);
-				service.readSevenDayAvg(function(err, res) {					
-					var socketConnect = sSocket.of('/access').connected[cSocket.id];
-					if(err){
-						socketConnect && socketConnect.emit('readSevenDaysAvgFailed', res);
-						cSocket.disconnect();
-					}else{
-						socketConnect && socketConnect.emit('readSevenDaysAvgSucceed', res);						
-					}
-				});
-			});			
+			});		
 		});
 	})();
 };

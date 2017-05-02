@@ -22,7 +22,7 @@ var callback = function(err, res){
 
 
 //Service.readByUserName("qinjie", callback);
-//Service.readAll(callback);
+Service.readAll(callback);
 // Service.readSevenDayAvg(callback);
 //Service.readTwentyFourHour(callback);
-Service.readHourAvg(1, callback);
+// Service.readHourAvg(1, callback);

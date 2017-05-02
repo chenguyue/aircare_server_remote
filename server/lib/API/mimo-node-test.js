@@ -1,11 +1,11 @@
 /**
 * mimo-node APIs test(JavaScript)
 * @Author: zgwang
-* @Date: 2017.4.11
+* @Date: 2017.05.02
 */
 var mimoNode = require('./mimo-node');
 
-/*mimoNode.readAll(new function(){
+mimoNode.readAll(new function(){
 	this.successCallback = function(message) {
 		console.log("read all data success: " + JSON.stringify(message));
 	};
@@ -13,8 +13,8 @@ var mimoNode = require('./mimo-node');
 		console.log("read failed: " + message);
 	};	
 });
-*/
-/*mimoNode.readHourAvg(1, new function(){
+
+/*mimoNode.readHourAvg(10, new function(){
 	this.successCallback = function(message) {
 		console.log(JSON.stringify(message));
 	};
@@ -22,11 +22,11 @@ var mimoNode = require('./mimo-node');
 		console.log("read seven days average data failed: " + message);
 	};	
 });*/
-mimoNode.readDayAvg(1, new function(){
+/*mimoNode.readDayAvg(5, new function(){
 	this.successCallback = function(message) {
 		console.log(JSON.stringify(message));
 	};
 	this.errorCallback = function(message) {
 		console.log("read seven days average data failed: " + message);
 	};	
-});
+});*/

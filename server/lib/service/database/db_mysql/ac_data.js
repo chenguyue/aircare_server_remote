@@ -2,7 +2,18 @@ var mysql = require('./mysql.js');
 var AC_SENSOR_DATA = 'ac_sensor_data';
 var acData = function(){};
 var result = new Array();
-// zgwang
+
+acData.prototype.readAll = function(callback){
+	var sql = "select * from " + AC_SENSOR_DATA;
+	var res = mysql.query(sql, function query(err, res){
+		if(err){
+			console.log(err);
+		}else{
+			callback(err, res);
+		}
+	})
+}
+
 acData.prototype.readDayAvg = function(day, callback){
 	var sql = "select subdate(curdate(), " + day + ") as date, "+
 		"subspace, type, avg(value) as value from ac_sensor_data "+
@@ -16,7 +27,7 @@ acData.prototype.readDayAvg = function(day, callback){
 		}
 	});	
 }
-// zgwang
+
 acData.prototype.readHourAvg = function(day, callback){
 	var sql = "select subdate(curdate(), " + day + ") as date, hour(time) as hour, subspace, avg(value) as value " + 
 	"from ac_sensor_data where date_format(time, '%Y-%m-%d')" + 
